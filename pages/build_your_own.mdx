@@ -1,0 +1,68 @@
+import { Callout, Steps } from 'nextra-theme-docs'
+
+# Build your own!
+
+Here you can find a simple tutorial how you can star and deplay it fast and easy in vercel.
+
+<Steps>
+### Login in vercel
+
+Go to [Vercel](https://vercel.com/) and login or register, you can register with github to make the whole process even easier. 
+
+[![](.github/vercel_login.png)](https://vercel.com/login)
+
+### Add new project
+
+In the dashboard click 'Add New...' and from the dropdown select 'Project'.
+[![](.github/vercel_add.png)](https://vercel.com/dashboard)
+
+Then in the right panel with the templates click 'Browse All Templates →' and search for 'Nextra'
+[![](.github/nextra_template.png)](hhttps://vercel.com/new/templates?search=nextra)
+
+After you ave find it you select it click 'Deploy' and follow the instractions.
+### Clone the repository
+
+```bash copy
+git clone <your_repo_url>
+```
+
+### Install Node.js
+
+**If you have Node.js already install in your system you can skip this step.**
+
+First install curl
+```bash copy
+sudo apt-get install curl
+```
+
+Then run the following command, you can change the version changing the setup_XX.x
+```bash copy
+curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+```
+
+
+### Install pnpm
+
+**If you have pnpm already install in your system you can skip this step.**
+
+Then you can install pnpm just runnig this command
+```bash copy
+npm install -g pnpm
+```
+
+### Start localy
+
+First you have to install the necessary dependencies by running
+```bash copy
+pnpm i
+```
+**(Make sure to be in the repository's folder before running the command else it is not going to work)**
+
+
+and finally you can start the server by runnig
+```bash copy
+pnpm dev
+```
+
+</Steps>
