@@ -1,0 +1,17 @@
+#How to use
+
+Import the library
+```py copy
+from MusicDownloader import MusicDownloader
+```
+
+Call the download method
+```py copy
+urls=["url_to_source"]
+download_path = "/path/to/save/the/file/"
+faild_file = "faild.txt"
+MusicDownloader.download(urls,download_path,faild_file)
+```
+
+The 'faild_file' is used so you can see which songs have not seccessfully downloaded.
+This is particular usefull if you have suplied the function with multiple links to downlaod.

@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
   "build_your_own": "Build your own docs site",
+  "Music_Downloader_(lib)": "Music Downloader (lib)",
   "about": {
     "title": "About",
     "type": "page"
