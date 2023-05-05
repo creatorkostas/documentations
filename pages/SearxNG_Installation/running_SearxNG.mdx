@@ -1,0 +1,79 @@
+# Running SearxNG
+
+To run SearxNG you just run this commnad in /path/to/repository/searxng-docker/
+```bash copy
+sudo docker-compose up -d
+```
+And you wait to pull the necessary conteiners and start it in the background
+
+You can check that is up and running with
+```bash copy
+sudo docker ps
+```
+If you see 3 container redis,searxng,caddy the you can go yp [127.0.0.1:8080](http://127.0.0.1:8080/) and start using it.
+
+### Ther is not a searxng container!
+
+If you are not seeing a searxng comntainer you can stop the containers with
+```bash copy
+sudo docker down
+```
+
+The start them without the option -d (in the forground)
+```bash copy
+sudo docker-compose up
+```
+
+If you see an error "cp: can't create '/etc/searxng/uwsgi.ini': Permission denied" you can fix it by
+creating a new file in searxng folder with name "uwsgi.ini" and content
+```ini copy
+[uwsgi]
+# Who will run the code
+uid = searxng
+gid = searxng
+
+# Number of workers (usually CPU count)
+workers = %k
+threads = 4
+
+# The right granted on the created socket
+chmod-socket = 666
+
+# Plugin to use and interpreter config
+single-interpreter = true
+master = true
+plugin = python3
+lazy-apps = true
+enable-threads = true
+
+# Module to import
+module = searx.webapp
+
+# Virtualenv and python path
+pythonpath = /usr/local/searxng/
+chdir = /usr/local/searxng/searx/
+
+# automatically set processes name to something meaningful
+auto-procname = true
+
+# Disable request logging for privacy
+disable-logging = true
+log-5xx = true
+
+# Set the max size of a request (request-body excluded)
+buffer-size = 8192
+
+# No keep alive
+# See https://github.com/searx/searx-docker/issues/24
+add-header = Connection: close
+
+# uwsgi serves the static files
+# expires set to one year since there are hashes
+static-map = /static=/usr/local/searxng/searx/static
+static-expires = /* 31557600
+static-gzip-all = True
+offload-threads = %k
+
+# Cache
+cache2 = name=searxngcache,items=2000,blocks=2000,blocksize=4096,bitmap=1
+```

@@ -1,0 +1,49 @@
+# Docker installation
+
+```bash copy
+sudo apt install docker.io docker-compose
+```
+
+docker.io is the docker engine and docker-compose is a package that allow you to
+deploy one or more containers with a single command from docker-compose.yml file.
+
+### Package not found!
+
+This commands is for ubuntu for more distributions you can see the [official site](https://docs.docker.com/engine/install/).
+
+If you get an error that one or both packages not found then you have to put the docker repository
+into the available repositories
+
+Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+```bash copy
+sudo apt-get update
+
+sudo apt-get install \
+  ca-certificates \
+  curl \
+  gnupg
+```
+
+Add Docker’s official GPG key:
+```bash copy
+sudo install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+Use the following command to set up the repository:
+```bash copy
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Then you can install the packages normaly through the package manager
+```bash copy
+sudo apt update
+sudo apt install docker.io docker-compose
+```
+

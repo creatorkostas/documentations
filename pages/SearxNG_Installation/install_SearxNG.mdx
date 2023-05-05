@@ -1,0 +1,32 @@
+# Installing SearxNG
+
+The installation for SearxNG is nathing more than clonning a repository
+from the official [searxng-docker repository](https://github.com/searxng/searxng-docker) in github
+and make some changes in 2 files.
+
+First you go in the directory which you want to clone the repository and run this command to clone it, just as any repository.
+```bash copy
+git clone https://github.com/searxng/searxng-docker.git
+```
+
+Then you must make some changes in the settings and the .env file and you are ready to start using it!
+
+### Let's start with the settings 
+
+You must run this commnad inside the searxng-docker folder in the current directory
+```bash copy
+sed -i "s|ultrasecretkey|$(openssl rand -hex 32)|g" searxng/settings.yml
+```
+This command will generate a random key and replace the "ultrasecretkey" with it in the settings.yml file in searxng folder
+
+### Then it is the .env file
+
+there you will find this 2 lines
+```yml
+# SEARXNG_HOSTNAME=<host>
+# LETSENCRYPT_EMAIL=<email>
+```
+The first one if you uncommend it you replace the "\<host\>" with a custom domain.
+The second is to put your email in order to genarete a ssl certificate with Let's Encrypt.
+
+You can leave it as it is and it will work just fine in localhost

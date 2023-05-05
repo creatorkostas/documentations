@@ -1,0 +1,55 @@
+# Configurations
+
+You can find the configurations in the right up corner or in searx/settings.yml
+If some section does not exist in the settings.yml you can just make it.
+
+e.g.
+```yml
+server:
+ ........
+general:
+ ........
+```
+
+### Server section
+
+Because the default method is POST when you try to go back there is an error.
+You can fix it by putting this in settings
+```yml copy
+method: "GET"
+```
+
+### General section
+
+You can disble the debugging with this.
+```yml copy
+debug: false
+```
+
+You can rename the search with this line.
+```yml copy
+instance_name: "MySearch"
+```
+
+If you want you can disable the contact_url with this.
+```yml copy
+contact_url: false
+```
+
+If you want to leave it enabled and set some url you can do something like that.
+```yml copy
+contact_url: mailto:myname@email.com
+```
+
+If you want to enable metrics record you can do it with this.
+You can access it by going to http(s)://url/stats
+```yml copy
+enable_metrics: true
+```
+
+### Search section
+
+You can set your prefered autocomplete engine with this.
+```yml copy
+autocomplete: "duckduckgo"
+```
