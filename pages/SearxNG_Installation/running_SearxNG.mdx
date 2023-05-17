@@ -24,7 +24,14 @@ The start them without the option -d (in the forground)
 sudo docker-compose up
 ```
 
-If you see an error "cp: can't create '/etc/searxng/uwsgi.ini': Permission denied" you can fix it by
+If you see an error "cp: can't create '/etc/searxng/uwsgi.ini': Permission denied" you can fix it by giving write
+permissions to the folder
+
+```bash copy
+chmod 764 ./searxng
+```
+
+or by
 creating a new file in searxng folder with name "uwsgi.ini" and content
 ```ini copy
 [uwsgi]
